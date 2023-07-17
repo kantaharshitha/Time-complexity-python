@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1>Time Complexity<h1>
+<h2>Pattern # 1 -- Constant time<h2>
+<pre><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">lst</span>):
+    <span class="hljs-keyword">return</span> lst[<span class="hljs-number">1</span>]
+</code></pre>
+<p>The time complexity of the function func is constant or O(1). It returns the element at index 1 of the input list lst. Regardless of the size of the list, the function always performs a single operation to access the element at a fixed position, so the time it takes to execute does not depend on the input size.</p>
+<pre><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>():
+  x = <span class="hljs-number">1</span>
+  x += <span class="hljs-number">1</span>
+  <span class="hljs-built_in">print</span>(x)
+</code></pre>
+<p>The time complexity of the fucntion is as follows:</p>
+<ul>
+<li>Line 1: x = 1
+<ul>
+<li>The assignment operation takes constant time, denoted as O(1).</li>
+</ul>
+</li>
+<li>Line 2: x += 1
+<ul>
+<li>The operation invloves access, addition, variable assignment.The time complexity is denoted as O(3).</li>
+</ul>
+</li>
+<li>Line 3: print(x)
+<ul>
+<li>The print function simply outputs the value of x to the console. Printing a single value is also a constant time operation, denoted as O(2).</li>
+</ul>
+</li>
+</ul>
+<p>The total time complexity is O(6) and as it is a constant, the fucntion will remain constant O(1).</p>
+<p>The number of steps required to complete the function does not depend on the input size.</p>
+<h2>Pattern # 2 -- Linear time<h2>
+<pre><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">loop</span>(<span class="hljs-params">N</span>):
+    count = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(N):
+        count += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> count
+</code></pre>
+<p>The time complexity of the fucntion is as follows:</p>
+<ul>
+<li>Line 1: count = 0
+<ul>
+<li>The assignment operation takes constant time, denoted as O(1).</li>
+</ul>
+</li>
+<li>Line 2: for _ in range(N):
+<ul>
+<li>This is a loop that iterates N times, where N is the input parameter. The values will assignment will aslo happen.The time complexity of the loop is O(2N), as the number of iterations directly depends on the value of N.</li>
+</ul>
+</li>
+<li>Line 3: count += 1
+<ul>
+<li>The operation invloves access, addition, variable assignment and its in the loop it will run N times so the time complexity is O(3N).</li>
+</ul>
+</li>
+<li>Line 4: return count
+<ul>
+<li>This statement will access the values and return. The return statement takes constant time, denoted as O(1+1).</li>
+</ul>
+</li>
+<li>The total time complexity is O(1+2N+3N+2) = O(5N+3) removing constants O(N).</li>
+<li>Single loop time complexity is O(N)</li>
+</ul>
+<pre><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">lst</span>):
+    <span class="hljs-comment"># Assume lst is of length N</span>
+    lst.insert(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>)
+</code></pre>
+<p>The time complexity of the fucntion is as follows:</p>
+<ul>
+<li>Line 1: lst.insert(0, 10)
+<ul>
+<li>In this method, insertion is happeneing at the beginning of the list. As this requires to insert the element in the beignning and move each element to the right one position.</li>
+<li>The time complexity of this is O(N), where N is the length of the list.</li>
+</ul>
+</li>
+</ul>
+<h2>Pattern # 3 -- Quadratic Time<h2>
+<pre><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">nested_loop</span>(<span class="hljs-params">N</span>):
+    count = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(N):
+        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(N):
+            count += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> count
+</code></pre>
+<p>The time complexity of the fucntion is as follows:</p>
+<ul>
+<li>Line 1: count = 0
+<ul>
+<li>The assignment operation takes constant time, denoted as O(1).</li>
+</ul>
+</li>
+<li>Line 2: for _ in range(N):
+<ul>
+<li>This is a loop that iterates N times, where N is the input parameter. The values will assignment will aslo happen.The time complexity of the loop is O(2N), as the number of iterations directly depends on the value of N.</li>
+</ul>
+</li>
+<li>Line 3: for _ in range(N):
+<ul>
+<li>This is a loop that iterates N * N times,as there are 2 loops where N is the input parameter. The time complexity is (2N*N)</li>
+</ul>
+</li>
+<li>Line 4: count += 1
+<ul>
+<li>The operation invloves access, addition, variable assignment and its in the nested loop it will run N * N times so the time complexity is O(3N*N).</li>
+</ul>
+</li>
+<li>Line 5: return count
+<ul>
+<li>This statement will access the values and return. The return statement takes constant time, denoted as O(1+1).</li>
+</ul>
+</li>
+<li>The total time complexity is O(1+2N+2N^2+ 3N^2+2) = O(5N^2+2N+3) removing constants O(N^2). ( N*N is becuase of the loop inside the loop)</li>
+<li>Nested loop time complexity is O(N^2)</li>
+</ul>
+<p>Overall, the time complexity of the nested_loop function is O(N^2) because it contains nested loops, each with a time complexity of O(N). The total number of iterations is N^2, resulting in a quadratic time complexity.</p>
+<pre><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">nested_loop</span>(<span class="hljs-params">lst</span>):
+    count = <span class="hljs-number">0</span>
+    N = <span class="hljs-built_in">len</span>(lst)
+    <span class="hljs-keyword">for</span> ele <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(N):
+        lst.insert(<span class="hljs-number">0</span>, ele)
+</code></pre>
+<p>The time complexity of the fucntion is as follows:</p>
+<ul>
+<li>Line 1: count = 0
+<ul>
+<li>The assignment operation takes constant time, denoted as O(1).</li>
+</ul>
+</li>
+<li>Line 2: N = len(lst)
+<ul>
+<li>This is an operation that calculates the length of the list lst and assign the value . It takes constant time, denoted as O(2).</li>
+</ul>
+</li>
+<li>Line 3: for ele in range(N):
+<ul>
+<li>This is a loop that iterates N times, where N is the input parameter. The values will assignment will aslo happen.The time complexity of the loop is O(2N), as the number of iterations directly depends on the value of N.</li>
+</ul>
+</li>
+<li>Line 4: lst.insert(0, ele)
+<ul>
+<li>The insert method is used to insert an element at the beginning of the list. and this insert is inside a for loop. This operation has a time complexity of O(N*N), where N is the length of the list. When an element is inserted at the beginning, all the existing elements need to be shifted one position to the right.</li>
+<li>The total time complexity is O(1+2+2N+N^2) = O(N^2+2N+3) removing constants O(N^2). ( N*N is becuase of the loop inside the loop)</li>
+</ul>
+</li>
+</ul>
+<h2>Pattern # 4 -- Single loop with different step size<h2>
+<pre><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">loop</span>(<span class="hljs-params">N</span>):
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(N, <span class="hljs-number">1</span>, k):
+        <span class="hljs-keyword">pass</span>
+</code></pre>
+<p>The time complexity of the fucntion is as follows:</p>
+<ul>
+<li>Line 1: for _ in range(N, 1, k):
+<ul>
+<li>This is a loop that iterates from N to 1, incrementing by k in each iteration. The time complexity of this loop depends on the values of N, k, and the number of iterations it performs.</li>
+<li>The number of iterations in the loop can be calculated as (N - 1) // k + 1. It represents the number of times the loop will execute, taking into account the starting point N, the ending point 1, and the step size k.</li>
+<li>The time complexity of the loop can be expressed as O((N - 1) // k + 1), which simplifies to O(N // k).</li>
+<li>Therefore, the time complexity of the loop function depends on the values of N and k, and it can be represented as O(N // k).</li>
+<li>After simplification O(N)</li>
+</ul>
+</li>
+</ul>
+<h2>Pattern # 5 -- nested loops with different step size<h2>
+<pre><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">N</span>):
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(N, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>):
+        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(N, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>):
+            <span class="hljs-keyword">pass</span>
+</code></pre>
+<p>The time complexity of the fucntion is as follows:</p>
+<ul>
+<li>Line 1: for _ in range(N, 1, 3):
+<ul>
+<li>This is an outer loop that iterates from N to 1, with a step size of 3. The time complexity of this loop depends on the values of N and the number of iterations it performs. The number of iterations in the outer loop can be calculated as (N - 1) // 3 .</li>
+</ul>
+</li>
+<li>Line 3: for _ in range(N, 1, 2):
+<ul>
+<li>This is an inner loop that also iterates from N to 1, with a step size of 2. Since it is nested inside the outer loop, it will be executed (N - 1) // 3 times for each iteration of the outer loop. The number of iterations in the inner loop can be calculated as (N - 1) // 2. Therefore, the total number of iterations is (N - 1) // 3 * [(N - 1) // 2].</li>
+</ul>
+</li>
+<li>Therefore, the time complexity of the func function depends on the value of N, and it can be represented as O((N - 1) // 3 * (N - 1) // 2). After simplifications O(N^2)</li>
+</ul>
+<h2>Pattern # 6 --  Log N<h2>
+<pre><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">N</span>):
+    i = <span class="hljs-number">1</span>
+    count = <span class="hljs-number">0</span>
+    factor = <span class="hljs-number">2</span>
+    <span class="hljs-keyword">while</span> (i &lt; N):
+        i *= factor
+        count += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> count 
+</code></pre>
+<p>The time complexity of the fucntion is as follows:</p>
+<ul>
+<li>Line 1: i = 1
+<ul>
+<li>This is a simple assignment operation that takes constant time, denoted as O(1).</li>
+</ul>
+</li>
+<li>Line 2: count = 0
+<ul>
+<li>This is a simple assignment operation that takes constant time, denoted as O(1).</li>
+</ul>
+</li>
+<li>Line 3: factor = 2
+<ul>
+<li>This is a simple assignment operation that takes constant time, denoted as O(1).</li>
+</ul>
+</li>
+<li>Line 4: while (i &lt; N):
+<ul>
+<li>This while loop continues as long as i is less than N. The number of iterations of the loop depends on the values of i and N.The variable i is multiplied by the factor 2 in each iteration of the loop. As long as i remains less than N, the loop will execute and i will be updated.</li>
+<li>As the valriable i is not incremented linearly and its multiplied by 2 all the time. You are not skipping every other, rather the multiplication is making you skip lots more, so follows log N behavior</li>
+<li>Time complexity is O(log N)</li>
+</ul>
+</li>
+<li>Line 5: count += 1
+<ul>
+<li>The operation invloves access, addition, variable assignment and its in the nested loop it will run N * N times so the time complexity is O(3Log N).</li>
+</ul>
+</li>
+<li>Line 6: return count
+<ul>
+<li>This statement will access the values and return. The return statement takes constant time, denoted as O(1+1).</li>
+</ul>
+</li>
+<li>The total time complexity is O(1+1+1+Log N +3Log N+ 2) = O(4 Log N +5) removing constants O(Log N).</li>
+</ul>
+
+        
+        
+    </body>
+    </html>
